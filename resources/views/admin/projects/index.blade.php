@@ -21,9 +21,9 @@
                     <th scope="col">ID</th>
                     <th scope="col">Immagine</th>
                     <th scope="col">Titolo</th>
-                    <th scope="col">Type</th>
+                    <th scope="col">Tipo</th>
                     <th scope="col">Descrizione</th>
-                    <th scope="col">Linguaggi utilizzati</th>
+                    <th scope="col">Tecnologie</th>
                     <th scope="col">Azioni</th>
 
                 </tr>
@@ -38,6 +38,13 @@
                         <td class="fw-bold">{{ $project->title }}</td>
                         <td class="">{{ $project->type?->name }}</td>
                         <td>{{ $project->description }}</td>
+                        <td>
+                            @forelse ($project->technologies as $technology)
+                                <span class=" badge text-bg-warning "> {{ $technology->name }} </span>
+                            @empty
+                                - no -
+                            @endforelse
+                        </td>
                         <td>{{ $project->prog_lang }}</td>
                         <td>
                             <div class="d-flex ">

@@ -9,6 +9,7 @@ use App\Functions\Helper;
 use App\Http\Requests\ProjectRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Type;
+use App\Models\Technology;
 
 class ProjectController extends Controller
 {
@@ -36,6 +37,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
+        $technologies = Technology::all();
         $types = Type::all();
         $add_mod_btn = 'AGGIUNGI';
         $mod_add_project = 'Inserisci nuovo progetto:';
@@ -43,7 +45,7 @@ class ProjectController extends Controller
         $route = route('admin.projects.store');
         $project = null;
         // stampo il form di creazione nuovo fumetto
-        return view('admin.projects.create-edit', compact('method', 'route', 'project', 'mod_add_project', 'types', 'add_mod_btn'));
+        return view('admin.projects.create-edit', compact('method', 'route', 'project', 'mod_add_project', 'types', 'add_mod_btn', 'technologies'));
     }
 
     /**
@@ -87,13 +89,14 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        $technologies = Technology::all();
         $types = Type::all();
         $add_mod_btn = 'MODIFICA';
         $mod_add_project = 'Modifica progetto:';
         $method = 'PUT';
         // $project = null;
         $route = route('admin.projects.update', $project);
-        return view('admin.projects.create-edit', compact('method', 'route', 'project', 'mod_add_project', 'types', 'add_mod_btn'));
+        return view('admin.projects.create-edit', compact('method', 'route', 'project', 'mod_add_project', 'types', 'add_mod_btn', 'technologies'));
     }
 
     /**
