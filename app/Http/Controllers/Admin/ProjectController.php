@@ -126,6 +126,16 @@ class ProjectController extends Controller
         // effettua il fill dei dati e li salva aggiornando il db
         $project->update($form_data);
 
+        if (array_key_exists('technologies', $form_data)) {
+            // aggiorno tutte le relazioni eliminando quelle che eventualmente non ci sono più
+
+            // sync accetta un array sincronizzando tutte le relazioni
+            $project->technologies()->sync($form_data['technologies']);
+        } else {
+            // se non sono presenti id dentro tags elimino tutte le relazioni con tags
+            $project->technologies()->detach();
+        }
+
         return redirect()->route('admin.projects.show', $project);
     }
 

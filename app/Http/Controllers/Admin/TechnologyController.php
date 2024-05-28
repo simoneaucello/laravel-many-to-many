@@ -48,9 +48,10 @@ class TechnologyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Technology $technology)
     {
-        //
+        // $projects = $technology->projects;
+        // return view('admin.technologies.show', compact('projects', 'technology'));
     }
 
     /**

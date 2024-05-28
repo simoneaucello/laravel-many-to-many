@@ -45,7 +45,7 @@
                                 - no -
                             @endforelse
                         </td>
-                        <td>{{ $project->prog_lang }}</td>
+                        {{-- <td>{{ $project->prog_lang }}</td> --}}
                         <td>
                             <div class="d-flex ">
                                 <a href="{{ route('admin.projects.show', $project) }}"

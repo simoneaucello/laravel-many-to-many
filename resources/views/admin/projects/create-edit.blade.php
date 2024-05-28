@@ -46,7 +46,7 @@
             </div>
 
             <div class="mb-3 bg-body-tertiary rounded p-2">
-                <label for="type" class="form-label">Tipologia </label>
+                <label for="type" class="form-label">Tipologie: </label>
                 <select name="type_id" class="form-select" aria-label="Default select example">
                     <option value="">Seleziona una tipologia</option>
                     @foreach ($types as $type)
@@ -55,6 +55,31 @@
                     @endforeach
 
                 </select>
+            </div>
+
+            <div class="mb-3 bg-body-tertiary rounded p-2">
+                <label for="type" class="form-label">Tecnologie: </label>
+                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+                    @foreach ($technologies as $technology)
+                        <input name="technologies[]" type="checkbox" class="btn-check" id="technology_{{ $technology->id }}"
+                            autocomplete="off" value="{{ $technology->id }} @error('technologies[]') is-invalid @enderror"
+                            @if (
+                                ($errors->any() && in_array($technology->id, old('technologies', []))) ||
+                                    (!$errors->any() && $project?->technologies->contains($technology))) checked @endif>
+                        <label class="btn btn-outline-primary" for="technology_{{ $technology->id }}">
+                            {{ $technology->name }}
+                        </label>
+                    @endforeach
+
+                    @error('technologies[]')
+                        <small class="text-danger fw-bold">
+                            {{ $message }}
+                        </small>
+                    @enderror
+
+
+                </div>
+
             </div>
 
             <div class="mb-3 bg-body-tertiary rounded p-2">
@@ -71,7 +96,7 @@
                     </small>
                 @enderror
             </div>
-            <div class="mb-3 bg-body-tertiary rounded p-2">
+            {{-- <div class="mb-3 bg-body-tertiary rounded p-2">
                 <label for="price" class="form-label">Linguaggi utilizzati:</label>
                 <input name="prog_lang" type="text" class="form-control @error('prog_lang') is-invalid @enderror"
                     id="prog_lang" aria-describedby="emailHelp" value=" {{ old('prog_lang', $project?->prog_lang) }} ">
@@ -81,7 +106,7 @@
                         {{ $message }}
                     </small>
                 @enderror
-            </div>
+            </div> --}}
 
             <button type="submit" class="btn bg-success text-white"> {{ $add_mod_btn }} </button>
             <button type="reset" class="btn bg-warning">RESET</button>
