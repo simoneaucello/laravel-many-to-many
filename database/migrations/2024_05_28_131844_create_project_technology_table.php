@@ -29,7 +29,7 @@ return new class extends Migration
             // FK su questa colonna
             $table->foreign('technology_id')
                 ->references('id')
-                ->on('projects')
+                ->on('technologies')
                 ->cascadeOnDelete();
             // se viene eliminato un post o una categoria viene cancellato il record della relazione
 
