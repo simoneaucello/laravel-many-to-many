@@ -21,6 +21,6 @@ class ProjectTechnologyTableSeeder extends Seeder
         $technology_id = Technology::inRandomOrder()->first()->id;
 
         // aggiungo la relazione nella tabella pivot
-        $project->tags()->attach($technology_id);
+        $project->technologies()->attach($technology_id);
     }
 }
